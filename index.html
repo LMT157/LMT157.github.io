@@ -5,95 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Protected Page</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script> <!-- Include CryptoJS -->
-    <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Body styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* Top navigation bar (initially hidden) */
-        .top-bar {
-            background-color: #333;
-            color: #fff;
-            width: 100%;
-            display: none; /* Hidden by default */
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-
-        /* Menu styles */
-        .left-menu, .right-menu {
-            display: flex;
-            gap: 20px;
-        }
-
-        .left-menu a, .right-menu a {
-            color: #fff;
-            text-decoration: none;
-            padding: 8px 16px;
-        }
-
-        .left-menu a:hover {
-            background-color: #444;
-            border-radius: 4px;
-        }
-
-        .download-button {
-            background-color: #FFA500;
-            color: #000;
-            font-weight: bold;
-            padding: 8px 16px;
-            border-radius: 4px;
-        }
-
-        .download-button:hover {
-            background-color: #ffb732;
-        }
-
-        .language-select {
-            background-color: #333;
-            color: #fff;
-            border: 1px solid #666;
-            padding: 5px;
-            border-radius: 4px;
-        }
-
-        /* Container for the password section */
-        .container {
-            text-align: center;
-            margin-top: 20vh;
-        }
-
-        /* Protected content (hidden initially) */
-        #protected-content {
-            display: none;
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        /* Error message styling */
-        #error-message {
-            color: red;
-            display: none;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to the CSS file -->
 </head>
 <body>
     <div class="container" id="login-container">
@@ -126,36 +38,6 @@
         <p>You have successfully entered the website.</p>
     </div>
 
-    <script>
-        const correctPasswordHash = "4ed46f765efb5890a9750c98dac44df338d65aead065199c04a2d550c8d66f8b";
-
-        function hashPassword(password) {
-            return CryptoJS.SHA256(password).toString(); 
-        }
-
-        function authenticate() {
-            const passwordInput = document.getElementById("password-input").value;
-            const errorMessage = document.getElementById("error-message");
-            const loginContainer = document.getElementById("login-container");
-            const topBar = document.getElementById("top-bar");
-            const protectedContent = document.getElementById("protected-content");
-
-            if (hashPassword(passwordInput) === correctPasswordHash) {
-                errorMessage.style.display = "none";
-                loginContainer.style.display = "none";
-                topBar.style.display = "flex"; // Show the top navigation bar
-                protectedContent.style.display = "block"; // Show the main content
-            } else {
-                errorMessage.style.display = "block"; // Show error message
-            }
-        }
-
-        // Add Enter key functionality for the password input
-        document.getElementById("password-input").addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                authenticate();
-            }
-        });
-    </script>
+    <script src="script.js"></script> <!-- Link to the JavaScript file -->
 </body>
 </html>
